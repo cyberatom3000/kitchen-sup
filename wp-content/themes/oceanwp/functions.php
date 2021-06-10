@@ -1010,6 +1010,121 @@ final class OCEANWP_Theme_Class {
 
 }
 
+/*
+* Creating a function to create our CPT
+*/
+function custom_post_type_item() {
+	// Set UI labels for Custom Post Type
+	$labels = array(
+		'name'                => _x( 'Items', 'Post Type General Name', 'oceanwp' ),
+		'singular_name'       => _x( 'Item', 'Post Type Singular Name', 'oceanwp' ),
+		'menu_name'           => __( 'Items', 'oceanwp' ),
+		// 'parent_item_colon'   => __( 'Parent Movie', 'oceanwp' ),
+		'all_items'           => __( 'All Items', 'oceanwp' ),
+		'view_item'           => __( 'View Item', 'oceanwp' ),
+		'add_new_item'        => __( 'Add New Item', 'oceanwp' ),
+		'add_new'             => __( 'Add New', 'oceanwp' ),
+		'edit_item'           => __( 'Edit Item', 'oceanwp' ),
+		'update_item'         => __( 'Update Item', 'oceanwp' ),
+		'search_items'        => __( 'Search Item', 'oceanwp' ),
+		'not_found'           => __( 'Not Found', 'oceanwp' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'oceanwp' ),
+	);
+	
+	// Set other options for Custom Post Type
+		$args = array(
+		'label'               => __( 'items', 'oceanwp' ),
+		'description'         => __( 'List of household supplies', 'oceanwp' ),
+		'labels'              => $labels,
+		// Features this CPT supports in Post Editor
+		'supports'            => array( 'title', 'author', 'thumbnail', 'revisions', ), // 'custom-fields',
+		// You can associate this CPT with a taxonomy or custom taxonomy. 
+		// 'taxonomies'          => array( 'genres' ),
+		/* A hierarchical CPT is like Pages and can have
+		* Parent and child items. A non-hierarchical CPT
+		* is like Posts.
+		*/ 
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'post',
+		'show_in_rest' => true,
+
+	);
+	
+	// Registering your Custom Post Type
+	register_post_type( 'item', $args );
+
+}
+
+function custom_post_type_container() {
+	// Set UI labels for Custom Post Type
+	$labels = array(
+		'name'                => _x( 'Containers', 'Post Type General Name', 'oceanwp' ),
+		'singular_name'       => _x( 'Container', 'Post Type Singular Name', 'oceanwp' ),
+		'menu_name'           => __( 'Containers', 'oceanwp' ),
+		// 'parent_item_colon'   => __( 'Parent Movie', 'oceanwp' ),
+		'all_items'           => __( 'All Containers', 'oceanwp' ),
+		'view_item'           => __( 'View Container', 'oceanwp' ),
+		'add_new_item'        => __( 'Add New Container', 'oceanwp' ),
+		'add_new'             => __( 'Add New', 'oceanwp' ),
+		'edit_item'           => __( 'Edit Container', 'oceanwp' ),
+		'update_item'         => __( 'Update Container', 'oceanwp' ),
+		'search_items'        => __( 'Search Container', 'oceanwp' ),
+		'not_found'           => __( 'Not Found', 'oceanwp' ),
+		'not_found_in_trash'  => __( 'Not found in Trash', 'oceanwp' ),
+	);
+	
+	// Set other options for Custom Post Type
+		$args = array(
+		'label'               => __( 'containers', 'oceanwp' ),
+		'description'         => __( 'List of containers/locations storing different house supplies', 'oceanwp' ),
+		'labels'              => $labels,
+		// Features this CPT supports in Post Editor
+		'supports'            => array( 'title', 'author', 'thumbnail', 'revisions', ),	// 'custom-fields',
+		// You can associate this CPT with a taxonomy or custom taxonomy. 
+		// 'taxonomies'          => array( 'genres' ),
+		/* A hierarchical CPT is like Pages and can have
+		* Parent and child items. A non-hierarchical CPT
+		* is like Posts.
+		*/ 
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'post',
+		'show_in_rest' => true,
+
+	);
+	
+	// Registering your Custom Post Type
+	register_post_type( 'container', $args );
+
+}
+
+/* Hook into the 'init' action so that the function
+* Containing our post type registration is not 
+* unnecessarily executed. 
+*/
+add_action( 'init', 'custom_post_type_container', 0 );
+add_action( 'init', 'custom_post_type_item', 1 );
+
+
 /**--------------------------------------------------------------------------------
 #region Freemius - This logic will only be executed when Ocean Extra is active and has the Freemius SDK
 ---------------------------------------------------------------------------------*/

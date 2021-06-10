@@ -55,3 +55,35 @@ get_header(); ?>
 	<?php do_action( 'ocean_after_content_wrap' ); ?>
 
 <?php get_footer(); ?>
+
+<!-- <?php
+// if(is_page('cart'))
+// {
+	?>
+		<div class="container">
+			<div class="row">
+				<div class="block block-breadcrumbs">
+						<ul>
+							<li class="home">
+								<a href="/">Home</a>
+								<span></span>
+							</li>
+							<li><?php echo the_title(); ?></li>
+						</ul>
+					</div>
+					<div class="main-page cart tchr_cart">
+						<h1 class="page-title"><?php echo the_title(); ?></h1>
+					
+						<?php if(have_posts()):
+					while (have_posts()) : the_post();
+						the_content();
+					endwhile;
+				endif; ?>
+					</div>
+			</div>
+		</div>
+	
+		
+	
+	<?php
+// } ?> -->

@@ -9228,25 +9228,3 @@ a.sidr-class-toggle-sidr-close .owp-icon {
     display: none !important;
   }
 }
-
-/*------------------------------------*
-	Scan code - elementor
-*------------------------------------*/
-div#qrscannerredirect {
-  display: flex;
-  justify-content: center;
-}
-button.MuiButton-text {
-  padding: 8rem;
-  background: #bbb;
-  border-radius: 0;
-}
-button.MuiButton-text:hover {
-  padding: 8rem;
-  background: rgb(255, 255, 255);
-  border-radius: 0;
-  border: #000 solid 2px;
-}
-.elementor img {
-  width: 80px !important;
-}
