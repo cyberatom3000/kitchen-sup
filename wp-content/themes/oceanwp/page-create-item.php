@@ -52,16 +52,40 @@ get_header(); ?>
 									<label for="cptQty"><?php _e('Enter quantity:', 'oceanwp') ?></label>
 									<input id="cptQty" name="cptQty" type="text" />
 								</p>
-								<p>
-									<label for="container-img"><?php _e('Select image of item', 'oceanwp') ?></label>
+								<!-- <p>
+									<label for="container-img"><!?php _e('Select image of item', 'oceanwp') ?></label>
 									<input id="container-img" accept="image/png, image/jpeg" name="container-img" type="file" >
-								</p>
+								</p> -->
 								<button class="btn-apple-324" type="submit"><?php _e('Add', 'oceanwp') ?></button>
 								<input id="item" name="item" type="hidden" value="my_custom_post_type" /> 
 								<?php wp_nonce_field( 'cpt_nonce_action', 'cpt_nonce_field' ); ?>
 							</form>
 						</div>
 						<!-- <div class="col-md-4"></div> -->
+						<?php 
+							if (isset( $_POST['cpt_nonce_field'] )
+
+							&& wp_verify_nonce( $_POST['cpt_nonce_field'], 'cpt_nonce_action' ) ) {
+							
+							// create post object with the form values
+							
+							$my_cptpost_args = array(
+							
+							'post_title'    => $_POST['cptTitle'],
+							
+							'post_content'  => $_POST['cptContent'],
+							
+							'post_status'   => 'pending',
+							
+							'post_type' => $_POST['post_type']
+							
+							);
+							// insert the post into the database
+							
+							$cpt_id = wp_insert_post( $my_cptpost_args, $wp_error);
+							
+							}
+						?>
 					</div>
 											
 				</div>

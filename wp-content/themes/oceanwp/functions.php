@@ -1037,7 +1037,7 @@ function custom_post_type_item() {
 		'description'         => __( 'List of household supplies', 'oceanwp' ),
 		'labels'              => $labels,
 		// Features this CPT supports in Post Editor
-		'supports'            => array( 'title', 'author', 'thumbnail', 'revisions', ), // 'custom-fields',
+		'supports'            => array( 'title', 'author', 'revisions', ), // , 'thumbnail', 'custom-fields',
 		// You can associate this CPT with a taxonomy or custom taxonomy. 
 		// 'taxonomies'          => array( 'genres' ),
 		/* A hierarchical CPT is like Pages and can have
@@ -1124,6 +1124,98 @@ function custom_post_type_container() {
 add_action( 'init', 'custom_post_type_container', 0 );
 add_action( 'init', 'custom_post_type_item', 1 );
 
+add_shortcode( 'wpshout_frontend_container', 'wpshout_frontend_container' );
+function wpshout_frontend_container() {
+	wpshout_save_post_if_submitted();
+    ?>
+	<div id="postbox">
+		<div class="container">
+			<div class="row apple-324">
+				<div class="col-md-4">
+					<form id="new_post" name="new_post" method="post" enctype="multipart/form-data">
+
+						<p>
+							<label for="cptTitle"><?php _e('Enter the storage/container name:', 'oceanwp') ?></label>
+							<input id="cptTitle" name="cptTitle" type="text" />
+						</p><!--?php _e(‘Select image of storage’, ‘oceanwp’) ?-->
+						<p>
+							<label for="cptImage"><?php _e('Select image of storage/container', 'oceanwp') ?></label>
+							<input id="cptImage" name="cptImage" type="file" >
+						</p>
+												
+
+						<?php wp_nonce_field( 'wps-frontend-post' ); ?>
+
+						<p align="right"><button class="btn-apple-324" type="submit"><?php _e('Add', 'oceanwp') ?></button></p>
+
+					</form>	
+				</div>
+			</div>
+		</div>
+	</div>
+    <?php
+}
+
+function wpshout_save_post_if_submitted() {
+    // Stop running function if form wasn't submitted
+    if ( !isset($_POST['cptTitle']) ) {
+        return;
+    }
+
+    // Check that the nonce was set and valid
+    if( !wp_verify_nonce($_POST['_wpnonce'], 'wps-frontend-post') ) {
+        echo 'Did not save because your form seemed to be invalid. Sorry';
+        return;
+    }
+
+    // Do some minor form validation to make sure there is content
+    if (strlen($_POST['cptTitle']) < 3) {
+        echo 'Please enter a title. Titles must be at least three characters long.';
+        return;
+    }
+
+    // Add the content of the form to $post as an array
+    $post = array(
+        'post_title'    => $_POST['cptTitle'],
+        // 'post_content'  => '',
+        'post_status'   => 'publish',   // Could be: publish
+        'post_type' 	=> 'container' // Could be: `page` or your CPT
+    );
+    $cpt_id = wp_insert_post($post);
+    echo 'Saved your post successfully!  ##  ';
+
+	$uploaddir = wp_upload_dir();
+	// if (isset($_FILES["cptImage"])) {
+	// 	echo 'image uploaded';
+	// 	print_r( $_FILES );
+	// }
+	if(isset($_POST['cptTitle'])){
+        echo '<pre>';
+		echo '$_FILES: ';
+        print_r($_FILES);
+        echo '</pre>';
+        }
+	
+	$file = $_FILES["cptImage"]["name"];
+	$uploadfile = $uploaddir['path'] . '/' . basename( $file );
+	
+	move_uploaded_file( $file , $uploadfile );
+	$filename = basename( $uploadfile );
+
+	$wp_filetype = wp_check_filetype(basename($filename), null );
+
+	$attachment = array(
+		'post_mime_type' => $wp_filetype['type'],
+		'post_title' => preg_replace('/\.[^.]+$/', '', $filename),
+		'post_content' => '',
+		'post_status' => 'inherit',
+		'menu_order' => $_i + 1000
+	);
+	$attach_id = wp_insert_attachment( $attachment, $uploadfile );
+	echo '$cpt_id: '.$cpt_id.' ##  $attach_id: '.$attach_id;
+	set_post_thumbnail( $cpt_id, $attach_id );
+
+}
 
 /**--------------------------------------------------------------------------------
 #region Freemius - This logic will only be executed when Ocean Extra is active and has the Freemius SDK
