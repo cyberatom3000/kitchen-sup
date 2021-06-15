@@ -21,8 +21,26 @@ button.btn-mango-324 {
   width: 100%;
   border: none;
   padding: .5rem 0;
-  text-align: center
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
 }
 button.btn-mango-324:hover {
-  border: 1px solid black;
+  border: none;
+  background-color:#bebebe;
+}
+span.mango-btn-label {
+  margin-left: 1rem;
+}
+div.pear-inpt-324 {
+  border: 1.5px solid #636363;
+}
+input#cptTitle {
+  border: none;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #242526 !important;
+  background-color: #eeeeee !important;
+  border-radius: 0;
+  border-bottom: solid 3px #000;
 }
