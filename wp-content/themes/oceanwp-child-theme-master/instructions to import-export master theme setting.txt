@@ -1,0 +1,4 @@
+
+1. Go to "Theme Panel" -> "Import/Export" and export your settingsin a .dat file and save on your computer.
+2. Install and activate the "OceanWP Child Theme".
+3. Go to "Theme Panel" -> "Import/Export" and import the .dat file with your settings.

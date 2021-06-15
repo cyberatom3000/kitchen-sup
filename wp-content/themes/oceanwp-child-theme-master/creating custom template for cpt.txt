@@ -1,0 +1,12 @@
+The child theme and some files within was created using the reference below:
+
+https://wordpress.org/support/topic/how-to-create-template-for-cpt/
+
+Extra references:
+https://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/
+https://www.wpbeginner.com/wp-themes/create-custom-single-post-templates-for-specific-posts-or-sections-in-wordpress/
+https://www.wpbeginner.com/wp-tutorials/how-to-create-a-custom-post-types-archive-page-in-wordpress/
+
+
+https://select2.org/searching
+https://stackoverflow.com/questions/18796221/creating-a-select-box-with-a-search-option

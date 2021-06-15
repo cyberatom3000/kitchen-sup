@@ -1,0 +1,5 @@
+Select tag with search option reference:
+
+https://select2.org/searching
+https://stackoverflow.com/questions/18796221/creating-a-select-box-with-a-search-option
+
