@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitchen Supplies</title>
+    <title>Create Item</title>
     <!-- Bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- CSS only -->
@@ -14,8 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" id="font-awesome-css" href="http://localhost/kitchen-sup/html/css/all.min.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
     <header class="p-3 mb-3 border-bottom">
@@ -25,9 +26,9 @@
                 <h3><i class="bi bi-box-seam"></i> Kitchen Supplies</h3>
             </a>
     
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <ul class="nav nav-pills col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li class="nav-item"><a href="create-container.html" class="nav-link px-2 link-dark" title="Create container">+ Container</a></li>
-                <li class="nav-item active"><a href="create-item.html" class="nav-link px-2 link-dark" title="Create item">+ Item</a></li>
+                <li class="nav-item"><a href="create-item.html" class="nav-link px-2 link-dark active" title="Create item">+ Item</a></li>
                 <li class="nav-item"><a href="store-item.html" class="nav-link px-2 link-dark" title="Store item">Store item</a></li>
                 <li class="nav-item"><a href="find-item.html" class="nav-link px-2 link-dark" title="Find item">Find item</a></li>
             </ul>
@@ -49,21 +50,20 @@
         <div id="postbox">
             <div class="container">
                 <div class="row apple-324">
-                    <div class="col-md-4">
-                        <form id="new_post" name="new_post" method="post" enctype="multipart/form-data">
-    
-                            <p>
-                                <label for="cptTitle">Enter the storage/container name:</label>
-                                <input id="cptTitle" name="cptTitle" type="text" />
-                            </p>
-                            <p>
-                                <label for="cptImage">Select image of storage/container</label>
-                                <input id="cptImage" name="cptImage" type="file" >
-                            </p>
-    
-                            <p align="right"><button class="btn-apple-324" type="submit">Add</button></p>
-    
-                        </form>	
+                    <div class="col-md-6">
+                            <form id="new_post" name="new_post" method="post" enctype="multipart/form-data">
+                                <div class="form-group mb-2">
+                                    <label for="cptTitle">Enter the item name: </label>
+                                    <input id="cptTitle" name="cptTitle" type="text" class="form-control"/>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="cptQty">Enter item qty: </label>
+                                    <input id="cptQty" name="cptQty" type="number" class="form-control">
+                                </div>
+        
+                                <p align="right"><input type="submit" value="Add"></p>
+                                
+                            </form>	
                     </div>
                 </div>
             </div>
